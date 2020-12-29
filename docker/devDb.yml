@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  falcun_db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: falcun
+      MYSQL_DATABASE: falcun
+      MYSQL_USER: falcun
+      MYSQL_PASSWORD: falcun
+    ports:
+      - "3306:3306"
+    volumes:
+      - falcun_db_data:/var/lib/mysql
+volumes:
+  falcun_db_data:

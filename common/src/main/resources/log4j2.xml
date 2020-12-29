@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" packages="net.minecrell.terminalconsole,me.minidigger.falcunnetworking.test,me.minidigger.falcunnetworking.client">
+    <Properties>
+        <Property name="console-pattern">%cyan{[%d{HH:mm:ss}]} %highlight{[%-5.5level]} %white{[%-25.25thread]} %highlight{[%-30.30c{1.}]:} %minecraftFormatting{%msg}%n</Property>
+        <Property name="file-pattern">[%d{HH:mm:ss}] [%-5.5level] [%-25.25thread] [%-30.30c{1.}]: %minecraftFormatting{%msg}{strip}%n</Property>
+    </Properties>
+    <Appenders>
+        <TerminalConsole name="Console">
+            <PatternLayout pattern="${sys:console-pattern}" />
+        </TerminalConsole>
+        <TestAppender name="Test">
+            <PatternLayout pattern="${sys:file-pattern}" />
+        </TestAppender>
+        <ClientAppender name="Client">
+            <PatternLayout pattern="${sys:file-pattern}" />
+        </ClientAppender>
+        <File name="File" fileName="logs/falcunnetworking.log">
+            <PatternLayout pattern="${sys:file-pattern}"/>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="Test"/>
+            <AppenderRef ref="Client"/>
+            <AppenderRef ref="File" level="debug"/>
+        </Root>
+        <Logger name="me.minidigger" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="Test"/>
+            <AppenderRef ref="Client"/>
+            <AppenderRef ref="File" level="debug"/>
+        </Logger>
+    </Loggers>
+</Configuration>
